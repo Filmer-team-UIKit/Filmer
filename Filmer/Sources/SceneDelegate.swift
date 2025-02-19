@@ -1,4 +1,5 @@
 import UIKit
+import Auth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -8,13 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+               
         window = UIWindow(windowScene: windowScene)
-        
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .red
-        
-        window?.rootViewController = viewController
+        window?.rootViewController = VCV()
         window?.makeKeyAndVisible()
     }
 }
