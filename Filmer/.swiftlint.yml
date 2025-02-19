@@ -1,19 +1,12 @@
 # Directory and file filters
-included:
-  - Plugins
-  - Source
-  - Tests
-  - Package.swift
+
 excluded:
-  - Tests/BuiltInRulesTests/Resources
-  - Tests/FrameworkTests/Resources
   - Project.swift
   - TuistAssets+SharedResources.swift
   - TuistBundle+SharedResources.swift
   - TuistAssets+Filmer.swift
   - TuistBundle+Filmer.swift
   - Pods
-  - MBUITest
 
 warning_threshold: 15
 
