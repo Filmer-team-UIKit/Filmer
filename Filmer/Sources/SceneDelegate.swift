@@ -9,9 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-               
+
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = VCV()
+        window?.rootViewController = UINavigationController(rootViewController: VCV())
         window?.makeKeyAndVisible()
     }
 }
