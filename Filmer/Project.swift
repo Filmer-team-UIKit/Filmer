@@ -20,6 +20,7 @@ let project = Project(
             bundleId: "io.tuist.Filmer",
             deploymentTargets: .iOS("15.0"),
             infoPlist: .extendingDefault(with: [
+                "UILaunchStoryboardName": "LaunchScreen",
                 "UIApplicationSceneManifest": [
                     "UIApplicationSupportsMultipleScenes": false,
                     "UISceneConfigurations": [
