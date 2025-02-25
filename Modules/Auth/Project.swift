@@ -1,4 +1,6 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
+
 
 let project = Project(
     name: "Auth",
@@ -11,6 +13,7 @@ let project = Project(
             deploymentTargets: .iOS("15.0"),
             infoPlist: .default,
             sources: ["Sources/**"],
+            scripts: [Project.getLinterScripts()],
             dependencies: [
                 .project(target: "Product", path: "../../Product"),
                 .project(target: "SharedResources", path: "../../SharedResources"),
