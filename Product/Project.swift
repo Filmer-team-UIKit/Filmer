@@ -1,4 +1,5 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let project = Project(
     name: "Product",
@@ -13,8 +14,9 @@ let project = Project(
             infoPlist: .default,
             sources: ["Sources/**"],
             resources: [],
+            scripts: [Project.getLinterScripts()],
             dependencies: [
-                .project(target: "Platform", path: "../Platform"),
+                .project(target: "Platform", path: "../Platform")
             ]
         ),
         

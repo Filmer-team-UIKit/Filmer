@@ -1,5 +1,6 @@
 
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 //test
 
@@ -14,11 +15,12 @@ let project = Project(
             deploymentTargets: .iOS("15.0"),
             infoPlist: .default,
             sources: ["Sources/**"],
+            scripts: [Project.getLinterScripts()],
             dependencies: [
                 .project(target: "Product", path: "../../Product"),
-                .project(target: "SharedResources", path: "../../SharedResources"),
+                .project(target: "SharedResources", path: "../../SharedResources")
 
             ]
-        ),
+        )
     ]
 )

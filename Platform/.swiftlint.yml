@@ -1,5 +1,3 @@
-# Directory and file filters
-
 excluded:
   - Project.swift
   - TuistAssets+SharedResources.swift
