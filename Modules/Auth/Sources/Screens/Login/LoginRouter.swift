@@ -5,9 +5,7 @@
 //  Created by Иван Карплюк on 20.02.2025.
 //
 
-
 import UIKit
-
 
 public protocol LoginRouterProtocol {
     /// Переходит в основной поток (после успешного входа).
@@ -15,7 +13,6 @@ public protocol LoginRouterProtocol {
     /// Возвращается к экрану регистрации.
     func navigateBackToRegistration()
 }
-
 
 /// Реализация роутера для экрана логина, делегирующего переключение экранов координатору.
 public class LoginRouter: LoginRouterProtocol {

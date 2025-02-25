@@ -16,7 +16,7 @@ let project = Project(
             resources: [],
             scripts: [Project.getLinterScripts()],
             dependencies: [
-                .project(target: "Platform", path: "../Platform"),
+                .project(target: "Platform", path: "../Platform")
             ]
         ),
         

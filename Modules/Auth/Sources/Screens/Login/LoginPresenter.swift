@@ -14,7 +14,6 @@ public protocol LoginPresenterProtocol {
     func backToRegistrationTapped()
 }
 
-
 /// Конкретная реализация презентера для экрана логина.
 public class LoginPresenter: LoginPresenterProtocol {
     private weak var view: LoginView?

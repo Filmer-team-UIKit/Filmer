@@ -1,6 +1,8 @@
+
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+//test
 
 let project = Project(
     name: "Auth",
@@ -16,9 +18,9 @@ let project = Project(
             scripts: [Project.getLinterScripts()],
             dependencies: [
                 .project(target: "Product", path: "../../Product"),
-                .project(target: "SharedResources", path: "../../SharedResources"),
+                .project(target: "SharedResources", path: "../../SharedResources")
 
             ]
-        ),
+        )
     ]
 )

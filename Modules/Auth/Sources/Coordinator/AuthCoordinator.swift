@@ -6,9 +6,7 @@
 //
 
 import UIKit
-import Auth
 import Product
-
 
 public protocol AuthFlowCoordinatorProtocol: ModuleCoordinator {
     /// Переходит к экрану подтверждения почты.
@@ -20,7 +18,6 @@ public protocol AuthFlowCoordinatorProtocol: ModuleCoordinator {
     /// Возвращает к экрану регистрации.
     func showRegistration()
 }
-
 
 /// Реализация координатора модуля Auth, реализующая AuthFlowCoordinatorProtocol.
 /// Этот класс находится в модуле Auth.
