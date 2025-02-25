@@ -15,7 +15,6 @@ public protocol RegistrationUseCaseProtocol {
     func register(user: User, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
-
 /// Конкретная реализация сценария регистрации.
 public class RegistrationUseCase: RegistrationUseCaseProtocol {
     private let registrationService: RegistrationServiceProtocol
