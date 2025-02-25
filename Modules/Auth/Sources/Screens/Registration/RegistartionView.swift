@@ -29,7 +29,7 @@ public class RegistrationViewController: UIViewController, RegistrationView {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .yellow
         setupUI()
         presenter.viewDidLoad()
     }

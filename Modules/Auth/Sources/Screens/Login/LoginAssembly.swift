@@ -6,22 +6,20 @@
 //
 
 import UIKit
-
+import Product
 
 public class LoginModuleAssembly {
-    /// Собирает LoginViewController с его зависимостями.
+    /// Собирает LoginViewController.
     /// - Parameters:
-    ///   - navigationController: UINavigationController, в который будет встроен экран.
-    ///   - coordinator: Координатор модуля Auth для управления переходами.
-    /// - Returns: Настроенный LoginViewController.
+    ///   - navigationController: UINavigationController для отображения экрана.
+    ///   - coordinator: Экземпляр AuthFlowCoordinatorProtocol для управления переходами.
+    /// - Returns: Готовый LoginViewController.
     public static func assemble(with navigationController: UINavigationController,
-                                coordinator: AuthFeatureCoordinatorProtocol) -> LoginViewController {
+                                coordinator: AuthFlowCoordinatorProtocol) -> LoginViewController {
         let viewController = LoginViewController()
-        let useCase = LoginUseCase()
+        let useCase = LoginUseCase()  // Можно заменить на реализацию через DI
         let router = LoginRouter(coordinator: coordinator)
-        let presenter = LoginPresenter(view: viewController,
-                                        loginUseCase: useCase,
-                                        router: router)
+        let presenter = LoginPresenter(view: viewController, loginUseCase: useCase, router: router)
         viewController.presenter = presenter
         return viewController
     }

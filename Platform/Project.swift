@@ -1,4 +1,5 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let project = Project(
     name: "Platform",
@@ -12,6 +13,7 @@ let project = Project(
             infoPlist: .default,
             sources: ["Sources/**"],
             resources: [],
+            scripts: [Project.getLinterScripts()],
             dependencies: [
                 .external(name: "Swinject"),
                 .external(name: "RealmSwift"),

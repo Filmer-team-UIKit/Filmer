@@ -56,14 +56,14 @@ open class BaseCoordinator: Coordinator {
     /// Добавляет дочерний координатор.
     ///
     /// - Parameter coordinator: Координатор для добавления.
-    public func addChild(_ coordinator: Coordinator) {
+    open func addChild(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
     }
     
     /// Удаляет дочерний координатор.
     ///
     /// - Parameter coordinator: Координатор для удаления.
-    public func removeChild(_ coordinator: Coordinator) {
+    open func removeChild(_ coordinator: Coordinator) {
         childCoordinators.removeAll { $0 === coordinator }
     }
 }

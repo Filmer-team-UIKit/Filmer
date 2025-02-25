@@ -19,11 +19,11 @@ public protocol LoginRouterProtocol {
 
 /// Реализация роутера для экрана логина, делегирующего переключение экранов координатору.
 public class LoginRouter: LoginRouterProtocol {
-    private weak var coordinator: AuthFeatureCoordinatorProtocol?
+    private weak var coordinator: AuthFlowCoordinatorProtocol?
     
     /// Инициализирует LoginRouter.
     /// - Parameter coordinator: Координатор модуля Auth для управления переходами.
-    public init(coordinator: AuthFeatureCoordinatorProtocol?) {
+    public init(coordinator: AuthFlowCoordinatorProtocol?) {
         self.coordinator = coordinator
     }
     

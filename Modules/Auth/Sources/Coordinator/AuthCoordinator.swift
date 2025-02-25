@@ -7,11 +7,26 @@
 
 import UIKit
 import Auth
-import Platform
+import Product
 
-/// Координатор модуля Auth, реализующий AuthFeatureCoordinatorProtocol.
-/// Отвечает за переключение экранов внутри модуля (Registration, EmailConfirmation, Login, MainFlow).
-public class AuthCoordinator: BaseCoordinator, AuthFeatureCoordinatorProtocol {
+
+public protocol AuthFlowCoordinatorProtocol: ModuleCoordinator {
+    /// Переходит к экрану подтверждения почты.
+    func showEmailConfirmation()
+    /// Переходит к экрану логина.
+    func showLogin()
+    /// Переходит в основной поток (например, после успешного входа).
+    func showMainFlow()
+    /// Возвращает к экрану регистрации.
+    func showRegistration()
+}
+
+
+/// Реализация координатора модуля Auth, реализующая AuthFlowCoordinatorProtocol.
+/// Этот класс находится в модуле Auth.
+public class AuthCoordinator: BaseCoordinatorProxy, AuthFlowCoordinatorProtocol {
+    public var moduleIdentifier: String { return "auth" }
+    
     private let navigationController: UINavigationController
     
     /// Инициализирует AuthCoordinator.
@@ -21,14 +36,15 @@ public class AuthCoordinator: BaseCoordinator, AuthFeatureCoordinatorProtocol {
         super.init()
     }
     
-    /// Запускает модуль Auth, по умолчанию показывая Registration.
+    /// Запускает модуль Auth, по умолчанию показывая экран регистрации.
     public override func start() {
         let registrationVC = RegistrationModuleAssembly.assemble(with: navigationController, coordinator: self)
         navigationController.pushViewController(registrationVC, animated: true)
     }
     
     public func showEmailConfirmation() {
-        
+//        let emailConfirmationVC = EmailConfirmationViewController()
+//        navigationController.pushViewController(emailConfirmationVC, animated: true)
     }
     
     public func showLogin() {

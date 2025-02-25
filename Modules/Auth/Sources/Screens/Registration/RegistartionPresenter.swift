@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Product
 
 public protocol RegistrationPresenterProtocol {
     /// Вызывается при загрузке экрана.

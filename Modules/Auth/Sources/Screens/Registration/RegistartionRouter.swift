@@ -16,9 +16,9 @@ public protocol RegistrationRouterProtocol {
 
 
 public class RegistrationRouter: RegistrationRouterProtocol {
-    private weak var coordinator: AuthFeatureCoordinatorProtocol?
+    private weak var coordinator: AuthFlowCoordinatorProtocol?
     
-    public init(coordinator: AuthFeatureCoordinatorProtocol?) {
+    public init(coordinator: AuthFlowCoordinatorProtocol?) {
         self.coordinator = coordinator
     }
     

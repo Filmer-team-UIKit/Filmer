@@ -6,17 +6,21 @@
 //
 
 import UIKit
+import Product
 
 
 public class RegistrationModuleAssembly {
+    /// Собирает RegistrationViewController.
+    /// - Parameters:
+    ///   - navigationController: UINavigationController для отображения экрана.
+    ///   - coordinator: Экземпляр AuthFlowCoordinatorProtocol для управления переходами.
+    /// - Returns: Готовый RegistrationViewController.
     public static func assemble(with navigationController: UINavigationController,
-                                coordinator: AuthFeatureCoordinatorProtocol) -> RegistrationViewController {
+                                coordinator: AuthFlowCoordinatorProtocol) -> RegistrationViewController {
         let viewController = RegistrationViewController()
-        let useCase = DIContainer.shared.resolve(RegistrationUseCaseProtocol.self)!
+        let useCase = RegistrationUseCase(registrationService: MockRegistrationService())
         let router = RegistrationRouter(coordinator: coordinator)
-        let presenter = RegistrationPresenter(view: viewController,
-                                                registrationUseCase: useCase,
-                                                router: router)
+        let presenter = RegistrationPresenter(view: viewController, registrationUseCase: useCase, router: router)
         viewController.presenter = presenter
         return viewController
     }

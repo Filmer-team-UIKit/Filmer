@@ -5,56 +5,46 @@
 //  Created by Иван Карплюк on 20.02.2025.
 //
 
+
 import UIKit
 import Platform
 
-/// Главный координатор приложения, отвечающий за создание окна, настройку корневого UINavigationController
-/// и запуск первичного навигационного потока.
-///
-/// AppCoordinator использует фабрику координаторов для создания модульных flow'ов (onboarding, auth, main flow).
+/// Главный координатор приложения, который управляет окном и переключает модульные координаторы.
+/// Он находится в Product и импортируется в главное приложение.
 public class AppCoordinator: BaseCoordinator {
-    /// Главное окно приложения.
     public let window: UIWindow
-    /// Корневой UINavigationController для отображения навигационных потоков.
     private let rootNavigationController: UINavigationController
-    /// Фабрика координаторов для создания модульных потоков.
-    private let coordinatorFactory: CoordinatorFactoryProtocol
+    /// Массив модульных координаторов (например, Auth, Onboarding, MainFlow).
+    public let moduleCoordinators: [ModuleCoordinator]
     
     /// Инициализирует AppCoordinator.
-    ///
     /// - Parameters:
     ///   - window: Главное окно приложения.
-    ///   - coordinatorFactory: Фабрика координаторов для создания модульных потоков.
-    public init(window: UIWindow, coordinatorFactory: CoordinatorFactoryProtocol) {
+    ///   - rootNavigationController: Навигационный контроллер, созданный в SceneDelegate.
+    ///   - moduleCoordinators: Массив модульных координаторов, собранных на уровне основного таргета.
+    public init(window: UIWindow,
+                rootNavigationController: UINavigationController,
+                moduleCoordinators: [ModuleCoordinator]) {
         self.window = window
-        self.coordinatorFactory = coordinatorFactory
-        self.rootNavigationController = UINavigationController()
+        self.rootNavigationController = rootNavigationController
+        self.moduleCoordinators = moduleCoordinators
         super.init()
     }
     
-    /// Запускает основной поток приложения:
-    /// - Устанавливает корневой контроллер окна.
-    /// - Запускает начальный модуль (например, onboarding).
+    /// Запускает приложение: устанавливает корневой контроллер окна и запускает стартовый модуль.
     public override func start() {
         window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
         
-        // Пример логики: если пользователь новый – запускаем onboarding.
-        startOnboardingFlow()
+        // Пример: запускаем модуль "auth"
+        startAuthFlow()
     }
     
     /// Обрабатывает входящие deep link'и на уровне приложения.
-    ///
-    /// Сначала делегирует deep link дочерним координаторам, а затем инициирует нужный flow.
-    ///
     /// - Parameter deepLink: Входящий deep link.
     /// - Returns: `true`, если deep link был обработан.
     public override func handle(deepLink: DeepLink?) -> Bool {
         guard let deepLink = deepLink else { return false }
-        
-        if super.handle(deepLink: deepLink) {
-            return true
-        }
         
         switch deepLink {
         case .onboarding:
@@ -69,28 +59,28 @@ public class AppCoordinator: BaseCoordinator {
         }
     }
     
-    // MARK: - Приватные методы запуска модульных потоков
-    
-    /// Запускает поток Onboarding.
+    /// Запускает модуль Onboarding, выбирая координатор по moduleIdentifier.
     private func startOnboardingFlow() {
-        let onboardingCoordinator = coordinatorFactory.makeOnboardingCoordinator(navigationController: rootNavigationController)
-        addChild(onboardingCoordinator)
-        onboardingCoordinator.start()
+        if let onboardingCoordinator = moduleCoordinators.first(where: { $0.moduleIdentifier == "onboarding" }) {
+            addChild(onboardingCoordinator)
+            onboardingCoordinator.start()
+        }
     }
     
-    /// Запускает поток Auth.
+    /// Запускает модуль Auth.
     private func startAuthFlow() {
-        let authCoordinator = coordinatorFactory.makeAuthCoordinator(navigationController: rootNavigationController)
-        addChild(authCoordinator)
-        authCoordinator.start()
+        if let authCoordinator = moduleCoordinators.first(where: { $0.moduleIdentifier == "auth" }) {
+            addChild(authCoordinator)
+            authCoordinator.start()
+        }
     }
     
-    /// Запускает основной поток (например, TabBar) с указанным начальным экраном.
-    ///
-    /// - Parameter initialScreen: Начальный экран, который должен отобразиться.
+    /// Запускает основной поток, выбирая координатор по moduleIdentifier.
+    /// - Parameter initialScreen: Начальный экран в TabBar.
     private func startMainFlow(initialScreen: DeepLink.MainFlowScreen) {
-        let mainFlowCoordinator = coordinatorFactory.makeMainFlowCoordinator(navigationController: rootNavigationController, initialScreen: initialScreen)
-        addChild(mainFlowCoordinator)
-        mainFlowCoordinator.start()
+        if let mainFlowCoordinator = moduleCoordinators.first(where: { $0.moduleIdentifier == "mainFlow" }) {
+            addChild(mainFlowCoordinator)
+            mainFlowCoordinator.start()
+        }
     }
 }

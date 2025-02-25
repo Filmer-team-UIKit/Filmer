@@ -7,7 +7,7 @@
 
 
 import UIKit
-
+import SharedResources
 
 public protocol LoginView: AnyObject {
     /// Отображает сообщение об ошибке.
@@ -27,7 +27,7 @@ public class LoginViewController: UIViewController, LoginView {
     private let loginButton = UIButton(type: .system)
     private let backButton = UIButton(type: .system)
     private let activityIndicator = UIActivityIndicatorView(style: .medium)
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
