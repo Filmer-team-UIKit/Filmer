@@ -20,8 +20,6 @@ public protocol RegistrationPresenterProtocol {
     func goToLoginTapped()
 }
 
-
-
 public class RegistrationPresenter: RegistrationPresenterProtocol {
     private weak var view: RegistrationView?
     private let registrationUseCase: RegistrationUseCaseProtocol

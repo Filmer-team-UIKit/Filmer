@@ -8,7 +8,6 @@
 import UIKit
 import Product
 
-
 public class RegistrationModuleAssembly {
     /// Собирает RegistrationViewController.
     /// - Parameters:

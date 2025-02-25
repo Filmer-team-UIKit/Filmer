@@ -45,10 +45,8 @@ open class BaseCoordinator: Coordinator {
     /// - Parameter deepLink: Опциональный deep link.
     /// - Returns: `true`, если один из дочерних координаторов обработал deep link, иначе `false`.
     open func handle(deepLink: DeepLink?) -> Bool {
-        for coordinator in childCoordinators {
-            if coordinator.handle(deepLink: deepLink) {
-                return true
-            }
+        for coordinator in childCoordinators where coordinator.handle(deepLink: deepLink) {
+            return true
         }
         return false
     }

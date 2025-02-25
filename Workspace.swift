@@ -6,6 +6,6 @@ let workspace = Workspace(
         "Filmer",
         "Platform",
         "Product",
-        "Modules/Auth",
+        "Modules/Auth"
     ]
 )

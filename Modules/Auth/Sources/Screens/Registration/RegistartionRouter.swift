@@ -7,13 +7,10 @@
 
 import UIKit
 
-
 public protocol RegistrationRouterProtocol {
     func navigateToEmailConfirmation()
     func navigateToLogin()
 }
-
-
 
 public class RegistrationRouter: RegistrationRouterProtocol {
     private weak var coordinator: AuthFlowCoordinatorProtocol?

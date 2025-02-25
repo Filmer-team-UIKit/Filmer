@@ -16,7 +16,7 @@ let project = Project(
             scripts: [Project.getLinterScripts()],
             dependencies: [
                 .external(name: "Swinject"),
-                .external(name: "RealmSwift"),
+                .external(name: "RealmSwift")
             ]
         ),
         
@@ -31,6 +31,6 @@ let project = Project(
                 dependencies: [
                     .target(name: "Platform")
                 ]
-            ),
+            )
     ]
 )

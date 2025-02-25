@@ -30,8 +30,8 @@ let project = Project(
             dependencies: [
                 .project(target: "Product", path: "../Product"),
                 .project(target: "Auth", path: "../Modules/Auth"),
-                .project(target: "SharedResources", path: "../SharedResources"),
+                .project(target: "SharedResources", path: "../SharedResources")
             ]
-        ),
+        )
     ]
 )

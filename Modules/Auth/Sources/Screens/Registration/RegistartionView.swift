@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 public protocol RegistrationView: AnyObject {
     /// Отображает сообщение об ошибке.
     func showError(_ message: String)
